@@ -66,17 +66,17 @@
       background-color: #1a1a1a;
       border-radius: 12px;
       overflow: hidden;
-      cursor: pointer;
       transition: transform 0.2s ease;
+      position: relative;
     }
 
     .video-card:hover {
       transform: scale(1.02);
+      cursor: pointer;
     }
 
     .thumbnail {
       width: 100%;
-      height: auto;
       display: block;
     }
 
@@ -93,6 +93,20 @@
     .video-channel {
       font-size: 0.9rem;
       color: #aaa;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      display: none;
+    }
+
+    .active-video {
+      display: block !important;
+    }
+
+    .hide-thumbnail {
+      display: none !important;
     }
 
     #channel-modal {
@@ -151,13 +165,14 @@
       </div>
     </div>
 
-    <!-- Video 2: Přesměrování na random.html -->
-    <div class="video-card" onclick="window.location.href='random.html'">
-      <img class="thumbnail" src="Snímek obrazovky 2025-03-01 172714.png" alt="EggWars thumbnail">
+    <!-- Video 2: EggWars - Přehrávání videa -->
+    <div class="video-card" onclick="playLocalVideo()">
+      <img class="thumbnail" src="randomicek.png" alt="EggWars thumbnail">
       <div class="video-info">
         <div class="video-title">EggWars z budoucnosti..!</div>
         <div class="video-channel">JampiCZ • 487 tis. zhlédnutí • před 1 týdnem</div>
       </div>
+      <video id="random-video" src="random.mp4" controls></video>
     </div>
   </div>
 
@@ -182,6 +197,14 @@
         modal.classList.remove('active');
       }
     });
+
+    function playLocalVideo() {
+      const video = document.getElementById('random-video');
+      const thumbnail = document.querySelector('.video-card img');
+      video.classList.add('active-video');
+      thumbnail.classList.add('hide-thumbnail');
+      video.play();
+    }
   </script>
 
 </body>
