@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JampTube - Troll edice</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0f0f0f;
+      color: white;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #1f1f1f;
+      border-bottom: 1px solid #333;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 40px;
+      border-radius: 8px;
+    }
+
+    .logo span {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff0000;
+    }
+
+    .channel {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .channel img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .channel-name {
+      font-size: 1rem;
+    }
+
+    .main {
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .video-card {
+      background-color: #1a1a1a;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .video-card:hover {
+      transform: scale(1.02);
+    }
+
+    .thumbnail {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .video-info {
+      padding: 0.8rem;
+    }
+
+    .video-title {
+      font-size: 1rem;
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+
+    .video-channel {
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    #channel-modal {
+      display: none;
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      width: 300px;
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 1rem;
+      z-index: 1000;
+    }
+
+    #channel-modal.active {
+      display: block;
+    }
+
+    .modal-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-subtitle {
+      color: #ccc;
+      margin-bottom: 1rem;
+    }
+
+    .modal-description {
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="omg.png" alt="logo">
+      <span>JampTube</span>
+    </div>
+    <div class="channel" onclick="toggleModal()">
+      <img src="https://yt3.googleusercontent.com/ytc/AGIKgqPZ-CHANNEL-AVATAR=s88-c-k-c0x00ffffff-no-rj" alt="avatar">
+      <div class="channel-name">JampiCZ</div>
+    </div>
+  </header>
+
+  <div class="main">
+    <!-- Video 1: Rickroll -->
+    <div class="video-card" onclick="window.location.href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'">
+      <img class="thumbnail" src="noFilter.webp" alt="Obří kamenní monstrum..!">
+      <div class="video-info">
+        <div class="video-title">Obří kamenní monstrum..!</div>
+        <div class="video-channel">JampiCZ • 1,2 mil. zhlédnutí • před 3 dny</div>
+      </div>
+    </div>
+
+    <!-- Video 2: Přesměrování na random.html -->
+    <div class="video-card" onclick="window.location.href='random.html'">
+      <img class="thumbnail" src="Snímek obrazovky 2025-03-01 172714.png" alt="EggWars thumbnail">
+      <div class="video-info">
+        <div class="video-title">EggWars z budoucnosti..!</div>
+        <div class="video-channel">JampiCZ • 487 tis. zhlédnutí • před 1 týdnem</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="channel-modal">
+    <div class="modal-title">JampiCZ</div>
+    <div class="modal-subtitle">107&nbsp;000 odběratelů</div>
+    <div class="modal-description">
+      Ahoj! Vítám tě na mém kanálu JampiCZ, kde najdeš vlogy, zábavu, techniku, výzvy a spoustu originálního obsahu. Pokud se ti líbí, co dělám, nezapomeň dát odběr a zapnout si notifikace! 🚀
+    </div>
+  </div>
+
+  <script>
+    function toggleModal() {
+      const modal = document.getElementById('channel-modal');
+      modal.classList.toggle('active');
+    }
+
+    window.addEventListener('click', function(e) {
+      const modal = document.getElementById('channel-modal');
+      const channel = document.querySelector('.channel');
+      if (!modal.contains(e.target) && !channel.contains(e.target)) {
+        modal.classList.remove('active');
+      }
+    });
+  </script>
+
+</body>
+</html>
